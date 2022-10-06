@@ -23,13 +23,13 @@ main:
 	xor	eax, eax    # Clear eax
 	mov	rax, rsp
 	mov	rbx, rax
-	lea	rax, -112[rbp]
+	lea	rax, -112[rbp]  # arr_size
 	mov	rsi, rax
-	lea	rax, .LC0[rip]
+	lea	rax, .LC0[rip]  # Format string
 	mov	rdi, rax
 	mov	eax, 0
-	call	__isoc99_scanf@PLT
-	mov	eax, DWORD PTR -112[rbp]
+	call	__isoc99_scanf@PLT  # Call scanf
+	mov	eax, DWORD PTR -112[rbp] # Read value
 	movsx	rdx, eax
 	sub	rdx, 1
 	mov	QWORD PTR -88[rbp], rdx

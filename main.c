@@ -9,7 +9,7 @@ int main() {
     for (int i = 0; i < array_size; ++i) {
         scanf("%d", &a[i]);
 
-        if (a[i] % 2 == 0) {
+        if (a[i] % 2 == 0 && a[i] < 0) {
             ++new_size;
         }
     }
@@ -24,5 +24,6 @@ int main() {
     for (int i = 0; i < new_size; ++i) {
         printf("%d ", b[i]);
     }
+    printf("\n");
     return 0;
 }
