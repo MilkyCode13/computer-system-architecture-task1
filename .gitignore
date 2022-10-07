@@ -57,3 +57,8 @@ dkms.conf
 
 # CMake
 cmake-build-debug/
+
+asm
+basic
+functions
+modular

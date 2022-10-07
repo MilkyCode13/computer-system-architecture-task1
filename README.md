@@ -11,5 +11,5 @@
 одновременно имеют четные и отрицательные значения.
 
 ```shell
-gcc -S main.c -o task-asm-clean.s -masm=intel -O0 -Wall -fno-asynchronous-unwind-tables -fcf-protection=none
+gcc -S main.c -o task-asm-clean-lol.s -masm=intel -O0 -Wall -fno-asynchronous-unwind-tables -fcf-protection=none
 ```
