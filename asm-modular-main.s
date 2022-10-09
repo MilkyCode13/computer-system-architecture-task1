@@ -98,6 +98,57 @@ file:
     ret
 
 
+    .globl  generator
+    .type   generator, @function
+generator:
+    push    rbp                 # Save stack frame
+    mov rbp, rsp
+    push    rbx
+    push    r12
+    push    r13
+    push    r14
+
+    mov ebx, edi                # src_size
+
+    # int* src_array = generate_array(src_size);
+    call    generate_array
+    mov r12, rax                # src_array
+
+    # print_array(src_array, src_size);
+    mov esi, ebx                # int size <- src_size
+    mov rdi, r12                # int *array <- src_array
+    call    print_array
+
+    # int* new_array = make_array(src_array, src_size, &new_size)
+    mov esi, ebx                # int src_size
+    mov rdi, r12                # const int *src_array
+    call    make_array
+    mov r13d, edx               # new_size
+    mov r14, rax                # new_array
+
+    # free(src_array);
+    mov rdi, r12                # src_array
+    call    free@PLT
+
+    # print_array(new_array, new_size);
+    mov esi, r13d               # int size <- new_size
+    mov rdi, r14                # int *array <- new_array
+    call    print_array
+
+    # free(new_array);
+    mov rdi, r14                # new_array
+    call    free@PLT
+    mov eax, 0
+
+    pop r14
+    pop r13
+    pop r12
+    pop rbx
+    mov rsp, rbp
+    pop rbp
+    ret
+
+
     .globl  main
     .type   main, @function
 main:
@@ -111,11 +162,26 @@ main:
 
     mov rbx, rsi
     cmp rdi, 3
-    jne console_mode
+    je file_mode
 
+    cmp rdi, 2
+    je  generator_mode
+
+    jmp console_mode
+
+file_mode:
     mov rsi, QWORD PTR 16[rbx]
     mov rdi, QWORD PTR 8[rbx]
     call    file
+    jmp canary
+
+generator_mode:
+    mov edx, 10
+    mov esi, 0
+    mov rdi, QWORD PTR 8[rbx]
+    call    strtoul@PLT
+    mov rdi, rax
+    call    generator
     jmp canary
 
 console_mode:

@@ -34,6 +34,7 @@ int file(char *input_file, char *output_file) {
 
 int generator(size_t src_size) {
     int *src_array = generate_array(src_size);
+    print_array(src_array, src_size);
 
     size_t new_size;
     int *new_array = make_array(src_array, src_size, &new_size);
@@ -50,7 +51,7 @@ int main(int argc, char *argv[]) {
         case 3:
             return file(argv[1], argv[2]);
         case 2:
-            return generator(atol(argv[1]));
+            return generator(strtoul(argv[1], NULL, 10));
         default:
             return console();
     }
