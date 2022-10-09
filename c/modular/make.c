@@ -1,4 +1,4 @@
-#include "modular-make.h"
+#include "make.h"
 #include <stdlib.h>
 
 int *make_array(const int *src_array, size_t src_size, size_t *new_size) {

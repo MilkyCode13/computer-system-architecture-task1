@@ -58,7 +58,5 @@ dkms.conf
 # CMake
 cmake-build-debug/
 
-asm
-basic
-functions
-modular
+c/**/*.s
+tests/run_tests

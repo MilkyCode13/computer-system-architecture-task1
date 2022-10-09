@@ -1,7 +1,7 @@
-#include "modular-file.h"
-#include "modular-generator.h"
-#include "modular-io.h"
-#include "modular-make.h"
+#include "file.h"
+#include "generator.h"
+#include "io.h"
+#include "make.h"
 #include <stdlib.h>
 
 int console() {

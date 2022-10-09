@@ -1,4 +1,4 @@
-#include "modular-generator.h"
+#include "generator.h"
 #include <stdlib.h>
 #include <time.h>
 
