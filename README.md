@@ -10,6 +10,23 @@
 Вариант 38. Сформировать массив $B$ из элементов массива $A$, которые
 одновременно имеют четные и отрицательные значения.
 
-```shell
-gcc -S main.c -o task-asm-clean-lol.s -masm=intel -O0 -Wall -fno-asynchronous-unwind-tables -fcf-protection=none
-```
+## Содержимое репозитория
+
+- asm — Исходный код на ассемблере
+    - asm/basic — Версия, полученная компиляцией исходного кода на C и добавлением комментариев:
+      ```shell
+      gcc -S c/basic/main.c -o asm/basic/main.s -masm=intel -O0 -Wall -fno-asynchronous-unwind-tables -fcf-protection=none
+      ```
+
+    - asm/functions — basic + ручная разбивка ассемблерного кода на функции
+    - asm/registers — functions + ручная оптимизация кода посредством максимального использования регистров процессора
+    - asm/modular — registers + ручная разбивка кода на несколько единиц компиляции + модуль чтения и записи в файлы,
+      прокомментированный и оптимизированный вручную
+
+- c — Исходный код на C
+    - c/basic — Оригинальная версия на C
+    - c/functions — basic + разбивка кода на C на функции
+    - c/modular — functions + разбивка кода на модули + модуль файлового ввода и вывода
+
+- tests — Тестовое покрытие
+

@@ -59,4 +59,5 @@ dkms.conf
 cmake-build-debug/
 
 c/**/*.s
-tests/run_tests
+executables/*
+!executables/README.md
