@@ -34,7 +34,7 @@
 #	gcc -S modular-generator.c -o modular-generator.s -masm=intel -O0 -Wall -fno-asynchronous-unwind-tables -fcf-protection=none
 
 tests/run_tests: tests/main.cpp tests/functions.h tests/functions.cpp tests/generator.h tests/generator.cpp tests/performance_test.h tests/performance_test.cpp tests/functions_object/asm_basic.o tests/functions_object/asm_optimized.o tests/functions_object/c_O0.o tests/functions_object/c_O1.o tests/functions_object/c_O2.o tests/functions_object/c_O3.o tests/functions_object/c_Ofast.o
-	g++ -o tests/run_tests tests/main.cpp tests/functions.cpp tests/generator.cpp tests/performance_test.cpp tests/functions_object/asm_basic.o tests/functions_object/asm_optimized.o tests/functions_object/c_O0.o tests/functions_object/c_O1.o tests/functions_object/c_O2.o tests/functions_object/c_O3.o tests/functions_object/c_Ofast.o
+	g++ -o tests/run_tests tests/main.cpp tests/functions.cpp tests/generator.cpp tests/performance_test.cpp tests/functions_object/asm_basic.o tests/functions_object/asm_optimized.o tests/functions_object/c_O0.o tests/functions_object/c_O1.o tests/functions_object/c_O2.o tests/functions_object/c_O3.o tests/functions_object/c_Ofast.o -O3
 
 tests/functions_object/asm_basic.o:	asm/functions/make.s
 	as asm/functions/make.s -o tests/functions_object/asm_basic.o
