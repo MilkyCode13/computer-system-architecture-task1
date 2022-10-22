@@ -33,8 +33,8 @@
 #modular-generator.s: c/modular/generator.c
 #	gcc -S modular-generator.c -o modular-generator.s -masm=intel -O0 -Wall -fno-asynchronous-unwind-tables -fcf-protection=none
 
-executables/run_tests: tests/main.cpp tests/functions.h tests/functions.cpp tests/generator.h tests/generator.cpp tests/performance_test.h tests/performance_test.cpp tests/functions_object/asm_basic.o tests/functions_object/asm_optimized.o tests/functions_object/c_O0.o tests/functions_object/c_O1.o tests/functions_object/c_O2.o tests/functions_object/c_O3.o tests/functions_object/c_Ofast.o
-	g++ -o executables/run_tests tests/main.cpp tests/functions.cpp tests/generator.cpp tests/performance_test.cpp tests/functions_object/asm_basic.o tests/functions_object/asm_optimized.o tests/functions_object/c_O0.o tests/functions_object/c_O1.o tests/functions_object/c_O2.o tests/functions_object/c_O3.o tests/functions_object/c_Ofast.o -O3
+executables/run_tests: tests/main.cpp tests/functions.h tests/functions.cpp tests/generator.h tests/generator.cpp tests/performance_test.h tests/performance_test.cpp tests/functions_object/asm_basic.o tests/functions_object/asm_optimized.o tests/functions_object/c_O0.o tests/functions_object/c_O1.o tests/functions_object/c_O2.o tests/functions_object/c_O3.o tests/functions_object/c_Ofast.o tests/functions_object/c_Os.o
+	g++ -o executables/run_tests tests/main.cpp tests/functions.cpp tests/generator.cpp tests/performance_test.cpp tests/functions_object/asm_basic.o tests/functions_object/asm_optimized.o tests/functions_object/c_O0.o tests/functions_object/c_O1.o tests/functions_object/c_O2.o tests/functions_object/c_O3.o tests/functions_object/c_Ofast.o tests/functions_object/c_Os.o -O3
 
 tests/functions_object/asm_basic.o:	asm/functions/make.s
 	as asm/functions/make.s -o tests/functions_object/asm_basic.o
@@ -63,3 +63,7 @@ tests/functions_object/c_O3.o:	c/modular/make.c
 tests/functions_object/c_Ofast.o:	c/modular/make.c
 	gcc -c c/modular/make.c -o tests/functions_object/c_Ofast.o -Ofast
 	objcopy --redefine-sym make_array=make_array_c_Ofast tests/functions_object/c_Ofast.o
+
+tests/functions_object/c_Os.o:	c/modular/make.c
+	gcc -c c/modular/make.c -o tests/functions_object/c_Os.o -Os
+	objcopy --redefine-sym make_array=make_array_c_Os tests/functions_object/c_Os.o

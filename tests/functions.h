@@ -17,6 +17,7 @@ int *make_array_c_O1(const int *src_array, size_t src_size, size_t *new_size);
 int *make_array_c_O2(const int *src_array, size_t src_size, size_t *new_size);
 int *make_array_c_O3(const int *src_array, size_t src_size, size_t *new_size);
 int *make_array_c_Ofast(const int *src_array, size_t src_size, size_t *new_size);
+int *make_array_c_Os(const int *src_array, size_t src_size, size_t *new_size);
 }
 
 typedef int *ArrayMakerBasic(const int *src_array, size_t src_size, size_t *new_size);

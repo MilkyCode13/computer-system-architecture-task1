@@ -8,10 +8,10 @@
     {                                                                                                                      \
         auto result = measure_performance(func, array_size, run_count);                                                    \
         std::cout << std::left << std::setw(25) << #func                                                                                \
-                  << "\tworst: " << result.worst << "us mean: " << result.average << "us best: " << result.best << "us\n"; \
+                  << "\tbest: " << result.best << "us mean: " << result.average << "us worst: " << result.worst << "us\n"; \
     }
 
-const size_t array_size = 100000;
+const size_t array_size = 1000000;
 const size_t run_count = 100;
 
 int main() {
@@ -23,6 +23,7 @@ int main() {
     SHOW_PERFORMANCE(make_array_c_O2, array_size, run_count);
     SHOW_PERFORMANCE(make_array_c_O3, array_size, run_count);
     SHOW_PERFORMANCE(make_array_c_Ofast, array_size, run_count);
+    SHOW_PERFORMANCE(make_array_c_Os, array_size, run_count);
 
     TestRunner runner(array_size, 1000);
     runner.run_tests(make_array_asm_basic);
